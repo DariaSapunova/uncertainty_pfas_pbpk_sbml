@@ -1,0 +1,20 @@
+Parameter,Value,Remark
+MW, 414.07,
+logP, 4.81,
+VP, 2.34,
+Tmc, 144000,
+Kt, 55,
+Free, 0.02,
+PL, 2.2,
+PF, 0.04,
+PK, 1.05,
+PSk, 0.1,
+PR, 0.12,
+PG, 0.05,
+PLun, 1.27,
+kurinec, 0.0072,
+Htc, 0.44,
+BWBirth, 3.68
+BWRef, 3.68
+Age, 0
+AgeRef, 0

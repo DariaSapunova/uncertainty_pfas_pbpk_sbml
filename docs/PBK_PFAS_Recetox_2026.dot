@@ -1,0 +1,316 @@
+digraph {
+	graph [ratio=fill,
+		size="7,4"
+	];
+	node [fontname=Arial];
+	subgraph cluster_Alv {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Alv",
+			label=Alv,
+			shape=box,
+			style="filled,rounded"
+		];
+		Aalv	[color=black,
+			fillcolor=gold,
+			href="#species-Aalv",
+			label=Aalv,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Lung {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Lung",
+			label=Lung,
+			shape=box,
+			style="filled,rounded"
+		];
+		Alung	[color=black,
+			fillcolor=gold,
+			href="#species-Alung",
+			label=Alung,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_SkinSc {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-SkinSc",
+			label=SkinSc,
+			shape=box,
+			style="filled,rounded"
+		];
+		Asc	[color=black,
+			fillcolor=gold,
+			href="#species-Asc",
+			label=Asc,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_SkinTrans {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-SkinTrans",
+			label=SkinTrans,
+			shape=box,
+			style="filled,rounded"
+		];
+		Atrans	[color=black,
+			fillcolor=gold,
+			href="#species-Atrans",
+			label=Atrans,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_SkinVe {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-SkinVe",
+			label=SkinVe,
+			shape=box,
+			style="filled,rounded"
+		];
+		Ave	[color=black,
+			fillcolor=gold,
+			href="#species-Ave",
+			label=Ave,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Skin {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Skin",
+			label=Skin,
+			shape=box,
+			style="filled,rounded"
+		];
+		ASk	[color=black,
+			fillcolor=gold,
+			href="#species-ASk",
+			label=ASk,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Ven_Plas {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Ven_Plas",
+			label=Ven_Plas,
+			shape=box,
+			style="filled,rounded"
+		];
+		AVen_Plas	[color=black,
+			fillcolor=gold,
+			href="#species-AVen_Plas",
+			label=AVen_Plas,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Art_Plas {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Art_Plas",
+			label=Art_Plas,
+			shape=box,
+			style="filled,rounded"
+		];
+		AArt_Plas	[color=black,
+			fillcolor=gold,
+			href="#species-AArt_Plas",
+			label=AArt_Plas,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Gut {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Gut",
+			label=Gut,
+			shape=box,
+			style="filled,rounded"
+		];
+		AGut	[color=black,
+			fillcolor=gold,
+			href="#species-AGut",
+			label=AGut,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Liv {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Liv",
+			label=Liv,
+			shape=box,
+			style="filled,rounded"
+		];
+		ALiv	[color=black,
+			fillcolor=gold,
+			href="#species-ALiv",
+			label=ALiv,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Fat {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Fat",
+			label=Fat,
+			shape=box,
+			style="filled,rounded"
+		];
+		AFat	[color=black,
+			fillcolor=gold,
+			href="#species-AFat",
+			label=AFat,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Kid {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Kid",
+			label=Kid,
+			shape=box,
+			style="filled,rounded"
+		];
+		AKid	[color=black,
+			fillcolor=gold,
+			href="#species-AKid",
+			label=AKid,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Fil {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Fil",
+			label=Fil,
+			shape=box,
+			style="filled,rounded"
+		];
+		AFil	[color=black,
+			fillcolor=gold,
+			href="#species-AFil",
+			label=AFil,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Rest {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Rest",
+			label=Rest,
+			shape=box,
+			style="filled,rounded"
+		];
+		ARest	[color=black,
+			fillcolor=gold,
+			href="#species-ARest",
+			label=ARest,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Delay {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Delay",
+			label=Delay,
+			shape=box,
+			style="filled,rounded"
+		];
+		ADelay	[color=black,
+			fillcolor=gold,
+			href="#species-ADelay",
+			label=ADelay,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Urine {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Urine",
+			label=Urine,
+			shape=box,
+			style="filled,rounded"
+		];
+		AUrine	[color=black,
+			fillcolor=gold,
+			href="#species-AUrine",
+			label=AUrine,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Menstruation {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Menstruation",
+			label=Menstruation,
+			shape=box,
+			style="filled,rounded"
+		];
+		AMenstruation	[color=black,
+			fillcolor=gold,
+			href="#species-AMenstruation",
+			label=AMenstruation,
+			shape=box,
+			style="filled,rounded"];
+	}
+	subgraph cluster_Faeces {
+		graph [color=black,
+			fillcolor=lightblue,
+			fontname=Arial,
+			href="#compartment-Faeces",
+			label=Faeces,
+			shape=box,
+			style="filled,rounded"
+		];
+		AFaeces	[color=black,
+			fillcolor=gold,
+			href="#species-AFaeces",
+			label=AFaeces,
+			shape=box,
+			style="filled,rounded"];
+	}
+	Aalv -> Alung	[minlen=1];
+	Alung -> AArt_Plas;
+	Asc -> Atrans	[minlen=1];
+	Atrans -> Ave;
+	Ave -> ASk;
+	ASk -> AVen_Plas;
+	AArt_Plas -> AGut;
+	AArt_Plas -> ALiv;
+	AArt_Plas -> AFat;
+	AArt_Plas -> AKid;
+	AArt_Plas -> AFil;
+	AArt_Plas -> ARest;
+	AArt_Plas -> AMenstruation	[minlen=1];
+	AArt_Plas -> AFaeces	[minlen=2];
+	AGut -> ALiv;
+	ALiv -> AVen_Plas;
+	AFat -> AVen_Plas;
+	AKid -> AVen_Plas;
+	AFil -> AKid;
+	AFil -> ADelay;
+	ARest -> AVen_Plas;
+	ADelay -> AUrine	[minlen=1];
+}

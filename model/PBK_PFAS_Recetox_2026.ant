@@ -1,0 +1,283 @@
+function f_BW(age, BW_birth)
+    BW_birth + 4.47*age - 0.093*age^2 + 0.00061*age^3
+end
+
+model PBK_PFAS_Recetox_2026()
+
+  # Parameters
+
+  ### Age
+  AgeRef = 0         # reference age [yr]
+  Age = 0            # age during simulation [yr]
+
+  ### Sex (0 = male, 1 = female)
+  Sex = 1            # sex of the individual [-]
+
+  ### Body size
+  BWRef = 3.68       # reference body weight [kg]
+  BWBirth = 3.68     # nominal body weight at birth (of population) [kg]
+  Height = 1.76      # body height [m]
+
+  deltaBW := BWRef / f_BW(AgeRef, BWBirth)  # individual deviation of nominal BW [-]
+  BW := deltaBW * f_BW(Age, BWBirth)        # body weight during simulation [kg]
+
+  ### Blood mass and cardiac parameters
+  SDB = 1                 # Scaling factor for blood mass [-]
+  SDAdi = 1               # Scaling factor for adipose mass [-]
+  mB := piecewise((3.33*BSA-0.81)*SDB, Sex == 0, (2.66*BSA-0.46)*SDB)  # blood mass [kg] (sex-dependent)
+  BMI := BW/Height^2      # body mass index [kg/m^2]
+  HR = 72                 # heart rate [beats/min]
+  EDV := 43.13+12.96*mB   # end diastolic volume [mL/beat]
+  EF := 0.65-0.0018*BMI   # ejection fraction [-]
+
+  ### Scaling factors for organ masses (inter-individual variability)
+  SDLun = 1           # Scaling factor for lung mass [-]
+  SDK = 1             # Scaling factor for kidney mass [-]
+  SDInt = 1           # Scaling factor for intestine mass [-]
+  SDL = 1             # Scaling factor for liver mass [-]
+  SDSk = 1            # Scaling factor for skin mass [-]
+
+  ### Adipose tissue mass (age- and sex-dependent)
+  mAdi_male_0_1 := (0.9084+0.706*BW+5.3*Height-3.057*0.365*Age)/100*BW
+  mAdi_female_0_1 := (0.9084+0.706*BW+5.3*Height+0.3585-3.057*0.365*Age)/100*BW
+  mAdi_male_4_15 := (1.51*BMI-0.70*Age-3.6+1.4)/100*BW
+  mAdi_female_4_15 := (1.51*BMI-0.70*Age+1.4)/100*BW
+  mAdi_male_18_99 := (1.20*BMI+0.23*Age-10.8-5.4)/100*BW
+  mAdi_female_18_99 := (1.20*BMI+0.23*Age-5.4)/100*BW
+
+  mAdi_0_1 := piecewise(mAdi_male_0_1, Sex == 0, mAdi_female_0_1)
+  mAdi_4_15 := piecewise(mAdi_male_4_15, Sex == 0, mAdi_female_4_15)
+  mAdi_18_99 := piecewise(mAdi_male_18_99, Sex == 0, mAdi_female_18_99)
+
+  mAdi := piecewise(mAdi_0_1*SDAdi, Age < 1, piecewise(mAdi_4_15*SDAdi, Age < 15, piecewise(mAdi_18_99*SDAdi, Age < 99, mAdi_18_99*SDAdi)))
+
+  ### Organ masses estimated from body size
+  mLun := exp(2.1*log(Height)-2.092)*SDLun    # lungs [kg]
+  mK := exp(1.93*log(Height)-2.306)*SDK       # kidneys [kg]
+  mInt := exp(2.47*log(Height)-1.351)*SDInt   # intestines [kg]
+  mL := exp(1.98*log(Height)-0.6786)*SDL      # liver [kg]
+  mSk := exp(1.64*BSA-1.93)*SDSk              # skin [kg]
+
+  ### Tissue densities [kg/L]
+  rhoLun = 1.048         # lung density (mean of 1.04 and 1.056)
+  rhoK = 1.05            # kidney density
+  rhoInt = 1.042         # intestine density
+  rhoL = 1.0505          # liver density (mean of 1.045 and 1.056)
+  rhoSk = 1.5            # skin density
+  rhoB = 1.06            # blood density
+  rhoAdi = 0.916         # adipose tissue density
+
+  ### Fraction tissue volumes
+  FBW = 0.84           # Fraction of the BW covered by the sum of the compartments [-]
+  VPlasC = 0.0428      # Fraction plasma volume [-] (58% of blood)
+  VartC = 0.39         # Fraction of plasma in arteries [-]
+  VvenC = 0.61         # Fraction of plasma in veins [-]
+  Htc = 0.44           # Hematocrit [-]
+
+  ### Organ volumes estimated from mass and density
+  VLun := mLun/rhoLun    # lung volume [L]
+  VK := mK/rhoK          # kidney volume [L]
+  VInt := mInt/rhoInt    # intestine volume [L]
+  VL := mL/rhoL          # liver volume [L]
+  VSk := mSk/rhoSk       # skin volume [L]
+  VB := mB/rhoB          # blood volume [L]
+  VAdi := mAdi/rhoAdi    # adipose tissue volume [L]
+
+  ### Perfusion fractions
+  QfilC = 0.2             # Fraction of kidney plasma flow to filtrate [-]
+
+  ### Skin parameters
+  BSA := 0.007184*BW^0.425*(100*Height)^0.725  # Body surface area [m^2] (Du Bois formula)
+  SkinThickness = 0.1           # Skin thickness [cm]
+  FSkinExposed = 0.05           # Fraction of the skin exposed [-]
+  fss = 0.6                     # Fraction skin surface exposed [-]
+  hsc = 0.001                   # Stratum corneum thickness [cm]
+  hve = 0.0001                  # Viable epidermis thickness [cm]
+
+  ### Skin partition/diffusion parameters
+  Kpcell = 0.01                 # Cell permeability [cm/h]
+  ffatsc = 0.02                 # Fat fraction in stratum corneum [-]
+  ffatve = 0.02                 # Fat fraction in viable epidermis [-]
+  ffatepi = 0.05                # Fat fraction in epidermis [-]
+  ffatbl = 0.01                 # Fat fraction in blood [-]
+  Kpsc = 0.01                   # Stratum corneum permeability [cm/h]
+  Kpve = 0.001                  # Viable epidermis permeability [cm/h]
+
+  ## Physicochemical properties
+  MW = 414.07
+  logP = 4.81
+  VP = 2.34            # Vapor pressure [Pa]
+
+  ## Biochemical parameters
+  Tmc = 144000         # Maximum resorption rate [ug/d/kg^.75] (6000 * 24)
+  Kt = 55              # Resorption affinity [ug/L]
+  Free = 0.02          # Free fraction in plasma [-]
+
+  ### Partition coefficients
+  PL = 2.2             # Liver/plasma partition coefficient [-]
+  PF = 0.04            # Fat/plasma partition coefficient [-]
+  PK = 1.05            # Kidney/plasma partition coefficient [-]
+  PSk = 0.1            # Skin/plasma partition coefficient [-]
+  PR = 0.12            # Rest of the body/plasma partition coefficient [-]
+  PG = 0.05            # Gut/blood plasma partition coefficient [-]
+  PLun = 1.27          # Lung/plasma partition coefficient [-]
+
+  ### Maternal/early-life parameters
+  PT = 1                # Placental transfer factor [-]
+  Ratio = 0.5           # Milk/plasma ratio [-]
+  MFV = 0.5             # Menstrual fluid volume [L per 28 days]
+
+  ### Age windows for exposure/menstruation
+  age_start_menstruation = 12  # Start age for menstruation [yr]
+  age_stop_menstruation = 50   # Stop age for menstruation [yr]
+
+  # Assignments
+  Tm := Tmc*BW^0.75                  # Transporter maximum [ug/day]
+
+  ## Free fraction of chemical in tissues
+  FreeL := Free/PL
+  FreeF := Free/PF
+  FreeK := Free/PK
+  FreeSk := Free/PSk
+  FreeR := Free/PR
+  FreeG := Free/PG
+  FreeLun := Free/PLun
+
+  ## Scaled cardiac output and perfusion
+  QC := HR*EDV*EF/1000*60*24                                # cardiac output [L/d]
+  QCP := QC*(1-Htc)                                         # cardiac plasma output [L/d]
+  QL := (25.53+1.30*Sex)/100*QCP                           # liver blood flow [L/d]
+  QF := exp(2.5-0.043*BMI+0.033*mAdi)/100*QCP              # fat blood flow [L/d]
+  QK := (20.57-1.76*Sex)/100*QCP                           # kidney blood flow [L/d]
+  Qfil := QfilC*QK                                         # kidney filtrate flow [L/d]
+  QG := (18.52+3.04*Sex-(0.20+0.06*Sex)*BMI+(0.0009+0.0004*Sex)*BMI^2)/100*QCP  # gut blood flow [L/d]
+  QSk := (5.68-0.034*BMI)/100*QCP                          # skin blood flow [L/d]
+  QR := QCP-QL-QF-QK-QG-QSk                                # rest of body blood flow [L/d]
+
+  ## Ventilation
+  Qp := ((((1400 - 190)*Age^2.5)/(Age^2.5 + 50)) + 190) * 24  # Ventilation rate [L/d]
+
+  ## Pulmonary absorption
+  Pab := 1/(10^(6.96 - 1.04*log10(VP) - 0.533*logP - 0.00495*MW))
+
+  ## Skin partition coefficients
+  Kscve := ((1 - ffatve) + ffatve*10^logP) / ((1 - ffatsc) + ffatsc*10^logP)
+  Kver  := ((1 - ffatbl) + ffatbl*10^logP) / ((1 - ffatepi) + ffatepi*10^logP)
+
+  ## Skin surface area and volumes
+  SkinArea := fss*BSA
+  Vsc := SkinArea*hsc/1000
+  Vve := SkinArea*hve/1000
+  CLcell := 24*Kpcell*fss*BSA/1000
+  CLsc := 24*Kpsc*fss*BSA/1000
+  CLve := 24*Kpve*fss*BSA/1000
+
+  ## Menstrual clearance (females only)
+  CLmenstruation := piecewise(MFV*0.5*(1-Htc) + MFV*0.5, Sex == 1 and Age >= age_start_menstruation and Age <= age_stop_menstruation, 0)
+
+  ## Faecal clearance
+  CLfaecesc = 0.1                    # Fecal clearance scaling constant [L/d/kg]
+  CLfaeces := CLfaecesc*BW           # Fecal clearance [L/d]
+
+  ## Urinary clearance
+  kurinec = 0.0072                   # Urinary elimination rate constant [/d/kg^-0.25] (0.0003*24)
+  kurine := kurinec*BW^(-0.25)       # Urinary elimination rate constant [/d]
+
+  # Compartments
+  compartment Alv := 0.03*BW                                    # Alveolar air (functional residual capacity)
+  compartment Lung := VLun                                      # Lung tissue
+  compartment SkinSc := Vsc                                     # Stratum corneum
+  compartment SkinTrans := 1                                    # Transfer compartment
+  compartment SkinVe := Vve                                     # Viable epidermis
+  compartment Skin := VSk                                       # Perfused skin compartment
+  compartment Ven_Plas := VvenC*VPlasC*BW                       # Venous plasma
+  compartment Art_Plas := VartC*VPlasC*BW                       # Arterial plasma
+  compartment Gut := VInt                                       # Gut compartment (intestines)
+  compartment Liv := VL                                         # Liver compartment
+  compartment Fat := VAdi                                       # Fat compartment (adipose tissue)
+  compartment Kid := VK                                         # Kidney compartment
+  compartment Fil := VK*0.1                                     # Kidney filtrate compartment (10% of kidney volume)
+  compartment Rest := FBW*BW - VLun - VK - VInt - VL - VSk - VAdi - VK*0.1 - VPlasC*BW  # Rest-of-body compartment
+  compartment Delay = 1                                         # Storage compartment of urine
+  compartment Urine = 1                                         # Urine compartment
+  compartment Menstruation = 1                                  # Menstrual blood loss
+  compartment Faeces = 1                                        # Fecal elimination
+
+  # Species
+  substanceOnly species Aalv in Alv
+  substanceOnly species Alung in Lung
+  substanceOnly species Asc in SkinSc
+  substanceOnly species Atrans in SkinTrans
+  substanceOnly species Ave in SkinVe
+  substanceOnly species ASk in Skin
+  substanceOnly species AVen_Plas in Ven_Plas
+  substanceOnly species AArt_Plas in Art_Plas
+  substanceOnly species AGut in Gut
+  substanceOnly species ALiv in Liv
+  substanceOnly species AFat in Fat
+  substanceOnly species AKid in Kid
+  substanceOnly species AFil in Fil
+  substanceOnly species ADelay in Delay
+  substanceOnly species AUrine in Urine
+  substanceOnly species ARest in Rest
+  substanceOnly species AMenstruation in Menstruation
+  substanceOnly species AFaeces in Faeces
+
+  # Initial amounts
+  Aalv = 0
+  Alung = 0
+  Asc = 0
+  Atrans = 0
+  Ave = 0
+  ASk = 0
+  AVen_Plas = 0
+  AArt_Plas = 0
+  AGut = 0
+  ALiv = 0
+  AFat = 0
+  AKid = 0
+  AFil = 0
+  ADelay = 0
+  AUrine = 0
+  ARest = 0
+  AMenstruation = 0
+  AFaeces = 0
+
+  ## Age
+  Age' = 1/365
+
+  # Transfer equations
+  Aalv -> Alung; Qp*Pab*(Aalv/Alv)
+  Alung -> AArt_Plas; QCP*Free*(Alung/Lung)
+
+  # Dermal absorption: surface -> stratum corneum -> transfer layer -> viable epidermis -> perfused skin
+  Asc -> Atrans; 2*CLsc*(Asc/Vsc)
+  Atrans -> Ave; 2*CLsc*(Asc/Vsc) - 2*CLve*(Atrans/Vsc)/Kscve + 2*CLve*(Ave/Vve)
+  Ave -> ASk; 2*CLve*(Atrans/Vsc)/Kscve - 2*CLve*(Ave/Vve) - CLcell*(Ave/Vve)/Kver
+  ASk -> AVen_Plas; CLcell*(Ave/Vve)/Kver + QSk*FreeSk*(ASk/Skin)
+
+  # Arterial plasma distributes to tissues
+  AArt_Plas -> AGut; QG*Free*(AArt_Plas/Art_Plas)
+  AArt_Plas -> ALiv; QL*Free*(AArt_Plas/Art_Plas)
+  AArt_Plas -> AFat; QF*Free*(AArt_Plas/Art_Plas)
+  AArt_Plas -> AKid; QK*Free*(AArt_Plas/Art_Plas)
+  AArt_Plas -> AFil; Qfil*Free*(AArt_Plas/Art_Plas)
+  AArt_Plas -> ARest; QR*Free*(AArt_Plas/Art_Plas)
+  AArt_Plas -> AMenstruation; CLmenstruation*Free*(AArt_Plas/Art_Plas)
+  AArt_Plas -> AFaeces; CLfaeces*Free*(AArt_Plas/Art_Plas)
+
+  # Gut (receives arterial blood flow plus oral and drinking water exposure)
+  AGut -> ALiv; QG*FreeG*(AGut/Gut)
+
+  # Kidney filtrate reabsorption and urinary delay
+  AFil -> AKid; (Tm*(AFil/Fil))/(Kt+(AFil/Fil))
+  AFil -> ADelay; Qfil*(AFil/Fil)
+  ADelay -> AUrine; kurine*ADelay
+
+  # Tissue outflows to venous plasma
+  ALiv -> AVen_Plas; (QL+QG)*FreeL*(ALiv/Liv)
+  AFat -> AVen_Plas; QF*FreeF*(AFat/Fat)
+  AKid -> AVen_Plas; QK*FreeK*(AKid/Kid)
+  ARest -> AVen_Plas; QR*FreeR*(ARest/Rest)
+
+end

@@ -1,0 +1,3002 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" level="3" version="2">
+  <model metaid="PBK_PFAS_Recetox_2026" id="PBK_PFAS_Recetox_2026" substanceUnits="MicroGM" timeUnits="DAY" volumeUnits="L" extentUnits="MicroGM">
+    <listOfFunctionDefinitions>
+      <functionDefinition id="f_BW">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> age </ci>
+            </bvar>
+            <bvar>
+              <ci> BW_birth </ci>
+            </bvar>
+            <apply>
+              <plus/>
+              <apply>
+                <minus/>
+                <apply>
+                  <plus/>
+                  <ci> BW_birth </ci>
+                  <apply>
+                    <times/>
+                    <cn> 4.47 </cn>
+                    <ci> age </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <cn> 0.093 </cn>
+                  <apply>
+                    <power/>
+                    <ci> age </ci>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <cn> 0.00061 </cn>
+                <apply>
+                  <power/>
+                  <ci> age </ci>
+                  <cn type="integer"> 3 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfUnitDefinitions>
+      <unitDefinition id="MicroGM">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="-6" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="DAY">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="86400"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="L">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="YR">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="31557600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="KiloGM">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="3" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="UNITLESS">
+        <listOfUnits>
+          <unit kind="dimensionless" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="L_PER_KiloGM">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="gram" exponent="-1" scale="3" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="CentiM2">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="-2" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="CentiM">
+        <listOfUnits>
+          <unit kind="metre" exponent="1" scale="-2" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="GM_PER_MOL">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="PA">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="3" multiplier="1"/>
+          <unit kind="metre" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="MicroGM_PER_DAY_PER_KiloGM0P75">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="-6" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="86400"/>
+          <unit kind="gram" exponent="-0.75" scale="3" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="MicroGM_PER_L">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="-6" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="PER_DAY_KiloGM0P25">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="86400"/>
+          <unit kind="gram" exponent="0.25" scale="3" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="PER_DAY">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="86400"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="MicroGM_PER_DAY">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="-6" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="86400"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="L_PER_DAY">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="86400"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="Alv" spatialDimensions="3" constant="false"/>
+      <compartment metaid="meta_Lung" id="Lung" name="lung" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Lung">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00559"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment id="SkinSc" spatialDimensions="3" constant="false"/>
+      <compartment id="SkinTrans" spatialDimensions="3" size="1" constant="false"/>
+      <compartment id="SkinVe" spatialDimensions="3" constant="false"/>
+      <compartment metaid="meta_Skin" id="Skin" name="skin" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Skin">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00470"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Ven_Plas" id="Ven_Plas" name="venous blood" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Ven_Plas">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00452"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Art_Plas" id="Art_Plas" name="arterial blood" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Art_Plas">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00451"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Gut" id="Gut" name="gut" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Gut">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00477"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Liv" id="Liv" name="liver" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Liv">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00558"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Fat" id="Fat" name="adipose tissue" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Fat">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00460"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Kid" id="Kid" name="kidney" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Kid">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00557"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Fil" id="Fil" name="filtrate" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Fil">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00397"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Rest" id="Rest" name="rest-of-body" spatialDimensions="3" units="L" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Rest">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00450"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Delay" id="Delay" name="storage compartment of urine" spatialDimensions="3" size="1" units="L" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Delay">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00402"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Urine" id="Urine" name="urine" spatialDimensions="3" size="1" units="L" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Urine">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00556"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment id="Menstruation" spatialDimensions="3" size="1" constant="true"/>
+      <compartment id="Faeces" spatialDimensions="3" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="Aalv" compartment="Alv" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species metaid="meta_Alung" id="Alung" name="quantity in lung" compartment="Lung" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Alung">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00504"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species id="Asc" compartment="SkinSc" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="Atrans" compartment="SkinTrans" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="Ave" compartment="SkinVe" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species metaid="meta_ASk" id="ASk" name="quantity in skin" compartment="Skin" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_ASk">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00506"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_AVen_Plas" id="AVen_Plas" name="quantity in venous blood plasma" compartment="Ven_Plas" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_AVen_Plas">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00502"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_AArt_Plas" id="AArt_Plas" name="quantity in arterial blood plasma" compartment="Art_Plas" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_AArt_Plas">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00502"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_AGut" id="AGut" name="quantity in gut" compartment="Gut" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_AGut">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00496"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_ALiv" id="ALiv" name="quantity in liver" compartment="Liv" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_ALiv">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00497"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_AFat" id="AFat" name="quantity in fat" compartment="Fat" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_AFat">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00550"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_AKid" id="AKid" name="quantity in kidney" compartment="Kid" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_AKid">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00498"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_AFil" id="AFil" name="quantity in filtrate" compartment="Fil" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_AFil">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00499"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_ADelay" id="ADelay" name="quantity in delay" compartment="Delay" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_ADelay">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00500"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_AUrine" id="AUrine" name="quantity in urine" compartment="Urine" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_AUrine">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00274"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_ARest" id="ARest" name="quantity in rest-of-body" compartment="Rest" initialAmount="0" substanceUnits="MicroGM" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_ARest">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00501"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species id="AMenstruation" compartment="Menstruation" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="AFaeces" compartment="Faeces" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="AgeRef" name="current age of reference indvididual in simulation" value="0" units="YR" constant="true"/>
+      <parameter metaid="meta_Age" id="Age" name="age during simulation" value="0" units="YR" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Age">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00521"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="Sex" value="1" constant="true"/>
+      <parameter id="BWRef" name="body weight of reference indvididual in simulation" value="3.68" units="KiloGM" constant="true"/>
+      <parameter id="BWBirth" name="population nominal body weight at birth" value="3.68" units="KiloGM" constant="true"/>
+      <parameter id="Height" value="1.76" constant="true"/>
+      <parameter id="deltaBW" name="relative body weight of reference individual compared to population nominal body weight" units="UNITLESS" constant="false"/>
+      <parameter metaid="meta_BW" id="BW" name="body weight" units="KiloGM" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_BW">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00008"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="SDB" value="1" constant="true"/>
+      <parameter id="SDAdi" value="1" constant="true"/>
+      <parameter id="mB" constant="false"/>
+      <parameter metaid="meta_BSA" id="BSA" name="total area of the skin" units="CentiM2" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_BSA">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00010"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="BMI" constant="false"/>
+      <parameter id="HR" value="72" constant="true"/>
+      <parameter id="EDV" constant="false"/>
+      <parameter id="EF" constant="false"/>
+      <parameter id="SDLun" value="1" constant="true"/>
+      <parameter id="SDK" value="1" constant="true"/>
+      <parameter id="SDInt" value="1" constant="true"/>
+      <parameter id="SDL" value="1" constant="true"/>
+      <parameter id="SDSk" value="1" constant="true"/>
+      <parameter id="mAdi_male_0_1" constant="false"/>
+      <parameter id="mAdi_female_0_1" constant="false"/>
+      <parameter id="mAdi_male_4_15" constant="false"/>
+      <parameter id="mAdi_female_4_15" constant="false"/>
+      <parameter id="mAdi_male_18_99" constant="false"/>
+      <parameter id="mAdi_female_18_99" constant="false"/>
+      <parameter id="mAdi_0_1" constant="false"/>
+      <parameter id="mAdi_4_15" constant="false"/>
+      <parameter id="mAdi_18_99" constant="false"/>
+      <parameter id="mAdi" constant="false"/>
+      <parameter id="mLun" constant="false"/>
+      <parameter id="mK" constant="false"/>
+      <parameter id="mInt" constant="false"/>
+      <parameter id="mL" constant="false"/>
+      <parameter id="mSk" constant="false"/>
+      <parameter id="rhoLun" value="1.048" constant="true"/>
+      <parameter id="rhoK" value="1.05" constant="true"/>
+      <parameter id="rhoInt" value="1.042" constant="true"/>
+      <parameter id="rhoL" value="1.0505" constant="true"/>
+      <parameter id="rhoSk" value="1.5" constant="true"/>
+      <parameter id="rhoB" value="1.06" constant="true"/>
+      <parameter id="rhoAdi" value="0.916" constant="true"/>
+      <parameter id="FBW" name="Fraction of the BW covered by the sum of the compartments" value="0.84" units="L_PER_KiloGM" constant="true"/>
+      <parameter metaid="meta_VPlasC" id="VPlasC" name="fraction plasma volume" value="0.0428" units="L_PER_KiloGM" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_VPlasC">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00104"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_VartC" id="VartC" name="fraction arterial plasma volume" value="0.39" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_VartC">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00602"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_VvenC" id="VvenC" name="fraction venous plasma volume" value="0.61" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_VvenC">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00603"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="Htc" name="hematocrit" value="0.44" units="UNITLESS" constant="true"/>
+      <parameter id="VLun" constant="false"/>
+      <parameter id="VK" constant="false"/>
+      <parameter id="VInt" constant="false"/>
+      <parameter id="VL" constant="false"/>
+      <parameter id="VSk" constant="false"/>
+      <parameter id="VB" constant="false"/>
+      <parameter id="VAdi" constant="false"/>
+      <parameter metaid="meta_QfilC" id="QfilC" name="fraction of kidney plasma flow to filtrate" value="0.2" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_QfilC">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00511"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="SkinThickness" name="skin thickness" value="0.1" units="CentiM" constant="true"/>
+      <parameter metaid="meta_FSkinExposed" id="FSkinExposed" name="fraction of skin exposed" value="0.05" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_FSkinExposed">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00061"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="fss" value="0.6" constant="true"/>
+      <parameter id="hsc" value="0.001" constant="true"/>
+      <parameter id="hve" value="0.0001" constant="true"/>
+      <parameter id="Kpcell" value="0.01" constant="true"/>
+      <parameter id="ffatsc" value="0.02" constant="true"/>
+      <parameter id="ffatve" value="0.02" constant="true"/>
+      <parameter id="ffatepi" value="0.05" constant="true"/>
+      <parameter id="ffatbl" value="0.01" constant="true"/>
+      <parameter id="Kpsc" value="0.01" constant="true"/>
+      <parameter id="Kpve" value="0.001" constant="true"/>
+      <parameter metaid="meta_MW" id="MW" name="molar weight" value="414.07" units="GM_PER_MOL" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_MW">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00127"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_logP" id="logP" name="logP" value="4.81" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_logP">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00131"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="VP" name="vapor pressure" value="2.34" units="PA" constant="true"/>
+      <parameter metaid="meta_Tmc" id="Tmc" name="maximum resorption rate" value="144000" units="MicroGM_PER_DAY_PER_KiloGM0P75" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Tmc">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00535"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Kt" id="Kt" name="resorption affinity" value="55" units="MicroGM_PER_L" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Kt">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00536"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Free" id="Free" name="free fraction in plasma" value="0.02" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Free">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00591"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PL" id="PL" name="partition coefficient liver/plasma" value="2.2" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PL">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00170"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PF" id="PF" name="partition coefficient fat/plasma" value="0.04" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PF">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00174"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PK" id="PK" name="partition coefficient kidney/plasma" value="1.05" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PK">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00171"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PSk" id="PSk" name="partition coefficient skin/plasma" value="0.1" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PSk">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00176"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PR" id="PR" name="partition coefficient rest-of-body/plasma" value="0.12" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PR">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00518"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PG" id="PG" name="partition coefficient gut/plasma" value="0.05" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PG">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00166"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PLun" id="PLun" name="partition coefficient lung/plasma" value="1.27" units="UNITLESS" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PLun">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00179"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="PT" value="1" constant="true"/>
+      <parameter id="Ratio" value="0.5" constant="true"/>
+      <parameter id="MFV" value="0.5" constant="true"/>
+      <parameter id="age_start_menstruation" value="12" constant="true"/>
+      <parameter id="age_stop_menstruation" value="50" constant="true"/>
+      <parameter metaid="meta_Tm" id="Tm" name="transporter maximum" units="MicroGM_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Tm">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00535"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_FreeL" id="FreeL" name="free fraction of chemical in liver" units="UNITLESS" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_FreeL">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00154"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_FreeF" id="FreeF" name="free fraction of chemical in fat" units="UNITLESS" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_FreeF">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00158"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_FreeK" id="FreeK" name="free fraction of chemical in kidney" units="UNITLESS" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_FreeK">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00155"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_FreeSk" id="FreeSk" name="free fraction of chemical in skin" units="UNITLESS" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_FreeSk">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00160"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_FreeR" id="FreeR" name="free fraction of chemical in rest of body" units="UNITLESS" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_FreeR">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00596"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_FreeG" id="FreeG" name="free fraction of chemical in gut" units="UNITLESS" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_FreeG">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00150"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_FreeLun" id="FreeLun" name="free fraction of chemical in lung" units="UNITLESS" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_FreeLun">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00163"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_QC" id="QC" name="cardiac output adjusted for body weight" units="L_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_QC">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00013"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_QCP" id="QCP" name="cardiac output adjusted for plasma flow" units="L_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_QCP">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00528"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_QL" id="QL" name="scaled plasma flow to liver" units="L_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_QL">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00024"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_QF" id="QF" name="scaled plasma flow to fat" units="L_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_QF">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00032"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_QK" id="QK" name="scaled plasma flow to kidney" units="L_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_QK">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00026"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Qfil" id="Qfil" name="plasma flow to filtrate compartment" units="L_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Qfil">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00529"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_QG" id="QG" name="scaled plasma flow to gut" units="L_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_QG">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00531"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_QSk" id="QSk" name="scaled plasma flow to the skin" units="L_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_QSk">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00036"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_QR" id="QR" name="plasma flow to the rest of the body" units="L_PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_QR">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00050"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="Qp" constant="false"/>
+      <parameter id="Pab" constant="false"/>
+      <parameter id="Kscve" constant="false"/>
+      <parameter id="Kver" constant="false"/>
+      <parameter id="SkinArea" constant="false"/>
+      <parameter id="Vsc" constant="false"/>
+      <parameter id="Vve" constant="false"/>
+      <parameter id="CLcell" constant="false"/>
+      <parameter id="CLsc" constant="false"/>
+      <parameter id="CLve" constant="false"/>
+      <parameter id="CLmenstruation" constant="false"/>
+      <parameter id="CLfaecesc" value="0.1" constant="true"/>
+      <parameter id="CLfaeces" constant="false"/>
+      <parameter metaid="meta_kurinec" id="kurinec" name="urinary elimination rate constant" value="0.0072" units="PER_DAY_KiloGM0P25" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_kurinec">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00520"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_kurine" id="kurine" name="urinary elimination rate constant" units="PER_DAY" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_kurine">
+              <bqmodel:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://purl.obolibrary.org/obo/PBPKO_00520"/>
+                </rdf:Bag>
+              </bqmodel:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule variable="Alv">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <cn> 0.03 </cn>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Lung">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> VLun </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="SkinSc">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> Vsc </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="SkinTrans">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <cn type="integer"> 1 </cn>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="SkinVe">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> Vve </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Skin">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> VSk </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Ven_Plas">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> VvenC </ci>
+            <ci> VPlasC </ci>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Art_Plas">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> VartC </ci>
+            <ci> VPlasC </ci>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Gut">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> VInt </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Liv">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> VL </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Fat">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> VAdi </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Kid">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> VK </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Fil">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> VK </ci>
+            <cn> 0.1 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Rest">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <minus/>
+              <apply>
+                <minus/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <minus/>
+                    <apply>
+                      <minus/>
+                      <apply>
+                        <minus/>
+                        <apply>
+                          <minus/>
+                          <apply>
+                            <times/>
+                            <ci> FBW </ci>
+                            <ci> BW </ci>
+                          </apply>
+                          <ci> VLun </ci>
+                        </apply>
+                        <ci> VK </ci>
+                      </apply>
+                      <ci> VInt </ci>
+                    </apply>
+                    <ci> VL </ci>
+                  </apply>
+                  <ci> VSk </ci>
+                </apply>
+                <ci> VAdi </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> VK </ci>
+                <cn> 0.1 </cn>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci> VPlasC </ci>
+              <ci> BW </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <rateRule variable="Age">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <cn type="integer"> 1 </cn>
+            <cn type="integer"> 365 </cn>
+          </apply>
+        </math>
+      </rateRule>
+      <assignmentRule variable="deltaBW">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> BWRef </ci>
+            <apply>
+              <ci> f_BW </ci>
+              <ci> AgeRef </ci>
+              <ci> BWBirth </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="BW">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> deltaBW </ci>
+            <apply>
+              <ci> f_BW </ci>
+              <ci> Age </ci>
+              <ci> BWBirth </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mB">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <piecewise>
+            <piece>
+              <apply>
+                <times/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <cn> 3.33 </cn>
+                    <ci> BSA </ci>
+                  </apply>
+                  <cn> 0.81 </cn>
+                </apply>
+                <ci> SDB </ci>
+              </apply>
+              <apply>
+                <eq/>
+                <ci> Sex </ci>
+                <cn type="integer"> 0 </cn>
+              </apply>
+            </piece>
+            <otherwise>
+              <apply>
+                <times/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <cn> 2.66 </cn>
+                    <ci> BSA </ci>
+                  </apply>
+                  <cn> 0.46 </cn>
+                </apply>
+                <ci> SDB </ci>
+              </apply>
+            </otherwise>
+          </piecewise>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="BSA">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <cn> 0.007184 </cn>
+            <apply>
+              <power/>
+              <ci> BW </ci>
+              <cn> 0.425 </cn>
+            </apply>
+            <apply>
+              <power/>
+              <apply>
+                <times/>
+                <cn type="integer"> 100 </cn>
+                <ci> Height </ci>
+              </apply>
+              <cn> 0.725 </cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="BMI">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> BW </ci>
+            <apply>
+              <power/>
+              <ci> Height </ci>
+              <cn type="integer"> 2 </cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="EDV">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <cn> 43.13 </cn>
+            <apply>
+              <times/>
+              <cn> 12.96 </cn>
+              <ci> mB </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="EF">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 0.65 </cn>
+            <apply>
+              <times/>
+              <cn> 0.0018 </cn>
+              <ci> BMI </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi_male_0_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <plus/>
+                  <cn> 0.9084 </cn>
+                  <apply>
+                    <times/>
+                    <cn> 0.706 </cn>
+                    <ci> BW </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <cn> 5.3 </cn>
+                    <ci> Height </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <cn> 3.057 </cn>
+                  <cn> 0.365 </cn>
+                  <ci> Age </ci>
+                </apply>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi_female_0_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <plus/>
+                  <cn> 0.9084 </cn>
+                  <apply>
+                    <times/>
+                    <cn> 0.706 </cn>
+                    <ci> BW </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <cn> 5.3 </cn>
+                    <ci> Height </ci>
+                  </apply>
+                  <cn> 0.3585 </cn>
+                </apply>
+                <apply>
+                  <times/>
+                  <cn> 3.057 </cn>
+                  <cn> 0.365 </cn>
+                  <ci> Age </ci>
+                </apply>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi_male_4_15">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <plus/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <minus/>
+                    <apply>
+                      <times/>
+                      <cn> 1.51 </cn>
+                      <ci> BMI </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <cn> 0.7 </cn>
+                      <ci> Age </ci>
+                    </apply>
+                  </apply>
+                  <cn> 3.6 </cn>
+                </apply>
+                <cn> 1.4 </cn>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi_female_4_15">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <plus/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <cn> 1.51 </cn>
+                    <ci> BMI </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <cn> 0.7 </cn>
+                    <ci> Age </ci>
+                  </apply>
+                </apply>
+                <cn> 1.4 </cn>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi_male_18_99">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <times/>
+                      <cn> 1.2 </cn>
+                      <ci> BMI </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <cn> 0.23 </cn>
+                      <ci> Age </ci>
+                    </apply>
+                  </apply>
+                  <cn> 10.8 </cn>
+                </apply>
+                <cn> 5.4 </cn>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi_female_18_99">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <cn> 1.2 </cn>
+                    <ci> BMI </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <cn> 0.23 </cn>
+                    <ci> Age </ci>
+                  </apply>
+                </apply>
+                <cn> 5.4 </cn>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi_0_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <piecewise>
+            <piece>
+              <ci> mAdi_male_0_1 </ci>
+              <apply>
+                <eq/>
+                <ci> Sex </ci>
+                <cn type="integer"> 0 </cn>
+              </apply>
+            </piece>
+            <otherwise>
+              <ci> mAdi_female_0_1 </ci>
+            </otherwise>
+          </piecewise>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi_4_15">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <piecewise>
+            <piece>
+              <ci> mAdi_male_4_15 </ci>
+              <apply>
+                <eq/>
+                <ci> Sex </ci>
+                <cn type="integer"> 0 </cn>
+              </apply>
+            </piece>
+            <otherwise>
+              <ci> mAdi_female_4_15 </ci>
+            </otherwise>
+          </piecewise>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi_18_99">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <piecewise>
+            <piece>
+              <ci> mAdi_male_18_99 </ci>
+              <apply>
+                <eq/>
+                <ci> Sex </ci>
+                <cn type="integer"> 0 </cn>
+              </apply>
+            </piece>
+            <otherwise>
+              <ci> mAdi_female_18_99 </ci>
+            </otherwise>
+          </piecewise>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mAdi">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <piecewise>
+            <piece>
+              <apply>
+                <times/>
+                <ci> mAdi_0_1 </ci>
+                <ci> SDAdi </ci>
+              </apply>
+              <apply>
+                <lt/>
+                <ci> Age </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </piece>
+            <otherwise>
+              <piecewise>
+                <piece>
+                  <apply>
+                    <times/>
+                    <ci> mAdi_4_15 </ci>
+                    <ci> SDAdi </ci>
+                  </apply>
+                  <apply>
+                    <lt/>
+                    <ci> Age </ci>
+                    <cn type="integer"> 15 </cn>
+                  </apply>
+                </piece>
+                <otherwise>
+                  <piecewise>
+                    <piece>
+                      <apply>
+                        <times/>
+                        <ci> mAdi_18_99 </ci>
+                        <ci> SDAdi </ci>
+                      </apply>
+                      <apply>
+                        <lt/>
+                        <ci> Age </ci>
+                        <cn type="integer"> 99 </cn>
+                      </apply>
+                    </piece>
+                    <otherwise>
+                      <apply>
+                        <times/>
+                        <ci> mAdi_18_99 </ci>
+                        <ci> SDAdi </ci>
+                      </apply>
+                    </otherwise>
+                  </piecewise>
+                </otherwise>
+              </piecewise>
+            </otherwise>
+          </piecewise>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mLun">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <exp/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <cn> 2.1 </cn>
+                  <apply>
+                    <ln/>
+                    <ci> Height </ci>
+                  </apply>
+                </apply>
+                <cn> 2.092 </cn>
+              </apply>
+            </apply>
+            <ci> SDLun </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mK">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <exp/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <cn> 1.93 </cn>
+                  <apply>
+                    <ln/>
+                    <ci> Height </ci>
+                  </apply>
+                </apply>
+                <cn> 2.306 </cn>
+              </apply>
+            </apply>
+            <ci> SDK </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mInt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <exp/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <cn> 2.47 </cn>
+                  <apply>
+                    <ln/>
+                    <ci> Height </ci>
+                  </apply>
+                </apply>
+                <cn> 1.351 </cn>
+              </apply>
+            </apply>
+            <ci> SDInt </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mL">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <exp/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <cn> 1.98 </cn>
+                  <apply>
+                    <ln/>
+                    <ci> Height </ci>
+                  </apply>
+                </apply>
+                <cn> 0.6786 </cn>
+              </apply>
+            </apply>
+            <ci> SDL </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mSk">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <exp/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <cn> 1.64 </cn>
+                  <ci> BSA </ci>
+                </apply>
+                <cn> 1.93 </cn>
+              </apply>
+            </apply>
+            <ci> SDSk </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="VLun">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> mLun </ci>
+            <ci> rhoLun </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="VK">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> mK </ci>
+            <ci> rhoK </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="VInt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> mInt </ci>
+            <ci> rhoInt </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="VL">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> mL </ci>
+            <ci> rhoL </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="VSk">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> mSk </ci>
+            <ci> rhoSk </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="VB">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> mB </ci>
+            <ci> rhoB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="VAdi">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> mAdi </ci>
+            <ci> rhoAdi </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Tm">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Tmc </ci>
+            <apply>
+              <power/>
+              <ci> BW </ci>
+              <cn> 0.75 </cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="FreeL">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> Free </ci>
+            <ci> PL </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="FreeF">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> Free </ci>
+            <ci> PF </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="FreeK">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> Free </ci>
+            <ci> PK </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="FreeSk">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> Free </ci>
+            <ci> PSk </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="FreeR">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> Free </ci>
+            <ci> PR </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="FreeG">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> Free </ci>
+            <ci> PG </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="FreeLun">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> Free </ci>
+            <ci> PLun </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="QC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> HR </ci>
+                <ci> EDV </ci>
+                <ci> EF </ci>
+              </apply>
+              <cn type="integer"> 1000 </cn>
+            </apply>
+            <cn type="integer"> 60 </cn>
+            <cn type="integer"> 24 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="QCP">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> QC </ci>
+            <apply>
+              <minus/>
+              <cn type="integer"> 1 </cn>
+              <ci> Htc </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="QL">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <plus/>
+                <cn> 25.53 </cn>
+                <apply>
+                  <times/>
+                  <cn> 1.3 </cn>
+                  <ci> Sex </ci>
+                </apply>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> QCP </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="QF">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <exp/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <minus/>
+                    <cn> 2.5 </cn>
+                    <apply>
+                      <times/>
+                      <cn> 0.043 </cn>
+                      <ci> BMI </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <cn> 0.033 </cn>
+                    <ci> mAdi </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> QCP </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="QK">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <cn> 20.57 </cn>
+                <apply>
+                  <times/>
+                  <cn> 1.76 </cn>
+                  <ci> Sex </ci>
+                </apply>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> QCP </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Qfil">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> QfilC </ci>
+            <ci> QK </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="QG">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <plus/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <plus/>
+                    <cn> 18.52 </cn>
+                    <apply>
+                      <times/>
+                      <cn> 3.04 </cn>
+                      <ci> Sex </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn> 0.2 </cn>
+                      <apply>
+                        <times/>
+                        <cn> 0.06 </cn>
+                        <ci> Sex </ci>
+                      </apply>
+                    </apply>
+                    <ci> BMI </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <cn> 0.0009 </cn>
+                    <apply>
+                      <times/>
+                      <cn> 0.0004 </cn>
+                      <ci> Sex </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <power/>
+                    <ci> BMI </ci>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> QCP </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="QSk">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <cn> 5.68 </cn>
+                <apply>
+                  <times/>
+                  <cn> 0.034 </cn>
+                  <ci> BMI </ci>
+                </apply>
+              </apply>
+              <cn type="integer"> 100 </cn>
+            </apply>
+            <ci> QCP </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="QR">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <minus/>
+              <apply>
+                <minus/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <minus/>
+                    <ci> QCP </ci>
+                    <ci> QL </ci>
+                  </apply>
+                  <ci> QF </ci>
+                </apply>
+                <ci> QK </ci>
+              </apply>
+              <ci> QG </ci>
+            </apply>
+            <ci> QSk </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Qp">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <minus/>
+                    <cn type="integer"> 1400 </cn>
+                    <cn type="integer"> 190 </cn>
+                  </apply>
+                  <apply>
+                    <power/>
+                    <ci> Age </ci>
+                    <cn> 2.5 </cn>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <power/>
+                    <ci> Age </ci>
+                    <cn> 2.5 </cn>
+                  </apply>
+                  <cn type="integer"> 50 </cn>
+                </apply>
+              </apply>
+              <cn type="integer"> 190 </cn>
+            </apply>
+            <cn type="integer"> 24 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Pab">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <cn type="integer"> 1 </cn>
+            <apply>
+              <power/>
+              <cn type="integer"> 10 </cn>
+              <apply>
+                <minus/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <minus/>
+                    <cn> 6.96 </cn>
+                    <apply>
+                      <times/>
+                      <cn> 1.04 </cn>
+                      <apply>
+                        <log/>
+                        <logbase>
+                          <cn type="integer"> 10 </cn>
+                        </logbase>
+                        <ci> VP </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <cn> 0.533 </cn>
+                    <ci> logP </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <cn> 0.00495 </cn>
+                  <ci> MW </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Kscve">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <plus/>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <ci> ffatve </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> ffatve </ci>
+                <apply>
+                  <power/>
+                  <cn type="integer"> 10 </cn>
+                  <ci> logP </ci>
+                </apply>
+              </apply>
+            </apply>
+            <apply>
+              <plus/>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <ci> ffatsc </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> ffatsc </ci>
+                <apply>
+                  <power/>
+                  <cn type="integer"> 10 </cn>
+                  <ci> logP </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Kver">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <plus/>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <ci> ffatbl </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> ffatbl </ci>
+                <apply>
+                  <power/>
+                  <cn type="integer"> 10 </cn>
+                  <ci> logP </ci>
+                </apply>
+              </apply>
+            </apply>
+            <apply>
+              <plus/>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <ci> ffatepi </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> ffatepi </ci>
+                <apply>
+                  <power/>
+                  <cn type="integer"> 10 </cn>
+                  <ci> logP </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="SkinArea">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> fss </ci>
+            <ci> BSA </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vsc">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> SkinArea </ci>
+              <ci> hsc </ci>
+            </apply>
+            <cn type="integer"> 1000 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vve">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> SkinArea </ci>
+              <ci> hve </ci>
+            </apply>
+            <cn type="integer"> 1000 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CLcell">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <cn type="integer"> 24 </cn>
+              <ci> Kpcell </ci>
+              <ci> fss </ci>
+              <ci> BSA </ci>
+            </apply>
+            <cn type="integer"> 1000 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CLsc">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <cn type="integer"> 24 </cn>
+              <ci> Kpsc </ci>
+              <ci> fss </ci>
+              <ci> BSA </ci>
+            </apply>
+            <cn type="integer"> 1000 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CLve">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <cn type="integer"> 24 </cn>
+              <ci> Kpve </ci>
+              <ci> fss </ci>
+              <ci> BSA </ci>
+            </apply>
+            <cn type="integer"> 1000 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CLmenstruation">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <piecewise>
+            <piece>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci> MFV </ci>
+                  <cn> 0.5 </cn>
+                  <apply>
+                    <minus/>
+                    <cn type="integer"> 1 </cn>
+                    <ci> Htc </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> MFV </ci>
+                  <cn> 0.5 </cn>
+                </apply>
+              </apply>
+              <apply>
+                <and/>
+                <apply>
+                  <eq/>
+                  <ci> Sex </ci>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+                <apply>
+                  <geq/>
+                  <ci> Age </ci>
+                  <ci> age_start_menstruation </ci>
+                </apply>
+                <apply>
+                  <leq/>
+                  <ci> Age </ci>
+                  <ci> age_stop_menstruation </ci>
+                </apply>
+              </apply>
+            </piece>
+            <otherwise>
+              <cn type="integer"> 0 </cn>
+            </otherwise>
+          </piecewise>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CLfaeces">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> CLfaecesc </ci>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="kurine">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> kurinec </ci>
+            <apply>
+              <power/>
+              <ci> BW </ci>
+              <cn> -0.25 </cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="_J0" reversible="true">
+        <listOfReactants>
+          <speciesReference species="Aalv" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Alung" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qp </ci>
+              <ci> Pab </ci>
+              <apply>
+                <divide/>
+                <ci> Aalv </ci>
+                <ci> Alv </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J1" reversible="true">
+        <listOfReactants>
+          <speciesReference species="Alung" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AArt_Plas" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QCP </ci>
+              <ci> Free </ci>
+              <apply>
+                <divide/>
+                <ci> Alung </ci>
+                <ci> Lung </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J2" reversible="true">
+        <listOfReactants>
+          <speciesReference species="Asc" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Atrans" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <cn type="integer"> 2 </cn>
+              <ci> CLsc </ci>
+              <apply>
+                <divide/>
+                <ci> Asc </ci>
+                <ci> Vsc </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J3" reversible="true">
+        <listOfReactants>
+          <speciesReference species="Atrans" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ave" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Asc"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <plus/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <cn type="integer"> 2 </cn>
+                  <ci> CLsc </ci>
+                  <apply>
+                    <divide/>
+                    <ci> Asc </ci>
+                    <ci> Vsc </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <cn type="integer"> 2 </cn>
+                    <ci> CLve </ci>
+                    <apply>
+                      <divide/>
+                      <ci> Atrans </ci>
+                      <ci> Vsc </ci>
+                    </apply>
+                  </apply>
+                  <ci> Kscve </ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <cn type="integer"> 2 </cn>
+                <ci> CLve </ci>
+                <apply>
+                  <divide/>
+                  <ci> Ave </ci>
+                  <ci> Vve </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J4" reversible="true">
+        <listOfReactants>
+          <speciesReference species="Ave" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ASk" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Atrans"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <cn type="integer"> 2 </cn>
+                    <ci> CLve </ci>
+                    <apply>
+                      <divide/>
+                      <ci> Atrans </ci>
+                      <ci> Vsc </ci>
+                    </apply>
+                  </apply>
+                  <ci> Kscve </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <cn type="integer"> 2 </cn>
+                  <ci> CLve </ci>
+                  <apply>
+                    <divide/>
+                    <ci> Ave </ci>
+                    <ci> Vve </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> CLcell </ci>
+                  <apply>
+                    <divide/>
+                    <ci> Ave </ci>
+                    <ci> Vve </ci>
+                  </apply>
+                </apply>
+                <ci> Kver </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J5" reversible="true">
+        <listOfReactants>
+          <speciesReference species="ASk" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AVen_Plas" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Ave"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <plus/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> CLcell </ci>
+                  <apply>
+                    <divide/>
+                    <ci> Ave </ci>
+                    <ci> Vve </ci>
+                  </apply>
+                </apply>
+                <ci> Kver </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> QSk </ci>
+                <ci> FreeSk </ci>
+                <apply>
+                  <divide/>
+                  <ci> ASk </ci>
+                  <ci> Skin </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J6" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AArt_Plas" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AGut" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QG </ci>
+              <ci> Free </ci>
+              <apply>
+                <divide/>
+                <ci> AArt_Plas </ci>
+                <ci> Art_Plas </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J7" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AArt_Plas" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ALiv" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QL </ci>
+              <ci> Free </ci>
+              <apply>
+                <divide/>
+                <ci> AArt_Plas </ci>
+                <ci> Art_Plas </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J8" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AArt_Plas" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AFat" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QF </ci>
+              <ci> Free </ci>
+              <apply>
+                <divide/>
+                <ci> AArt_Plas </ci>
+                <ci> Art_Plas </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J9" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AArt_Plas" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AKid" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QK </ci>
+              <ci> Free </ci>
+              <apply>
+                <divide/>
+                <ci> AArt_Plas </ci>
+                <ci> Art_Plas </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J10" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AArt_Plas" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AFil" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qfil </ci>
+              <ci> Free </ci>
+              <apply>
+                <divide/>
+                <ci> AArt_Plas </ci>
+                <ci> Art_Plas </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J11" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AArt_Plas" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ARest" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QR </ci>
+              <ci> Free </ci>
+              <apply>
+                <divide/>
+                <ci> AArt_Plas </ci>
+                <ci> Art_Plas </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J12" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AArt_Plas" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AMenstruation" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> CLmenstruation </ci>
+              <ci> Free </ci>
+              <apply>
+                <divide/>
+                <ci> AArt_Plas </ci>
+                <ci> Art_Plas </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J13" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AArt_Plas" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AFaeces" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> CLfaeces </ci>
+              <ci> Free </ci>
+              <apply>
+                <divide/>
+                <ci> AArt_Plas </ci>
+                <ci> Art_Plas </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J14" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AGut" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ALiv" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QG </ci>
+              <ci> FreeG </ci>
+              <apply>
+                <divide/>
+                <ci> AGut </ci>
+                <ci> Gut </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J15" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AFil" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AKid" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Tm </ci>
+                <apply>
+                  <divide/>
+                  <ci> AFil </ci>
+                  <ci> Fil </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Kt </ci>
+                <apply>
+                  <divide/>
+                  <ci> AFil </ci>
+                  <ci> Fil </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J16" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AFil" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ADelay" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qfil </ci>
+              <apply>
+                <divide/>
+                <ci> AFil </ci>
+                <ci> Fil </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J17" reversible="true">
+        <listOfReactants>
+          <speciesReference species="ADelay" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AUrine" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kurine </ci>
+              <ci> ADelay </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J18" reversible="true">
+        <listOfReactants>
+          <speciesReference species="ALiv" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AVen_Plas" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <plus/>
+                <ci> QL </ci>
+                <ci> QG </ci>
+              </apply>
+              <ci> FreeL </ci>
+              <apply>
+                <divide/>
+                <ci> ALiv </ci>
+                <ci> Liv </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J19" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AFat" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AVen_Plas" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QF </ci>
+              <ci> FreeF </ci>
+              <apply>
+                <divide/>
+                <ci> AFat </ci>
+                <ci> Fat </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J20" reversible="true">
+        <listOfReactants>
+          <speciesReference species="AKid" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AVen_Plas" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QK </ci>
+              <ci> FreeK </ci>
+              <apply>
+                <divide/>
+                <ci> AKid </ci>
+                <ci> Kid </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J21" reversible="true">
+        <listOfReactants>
+          <speciesReference species="ARest" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AVen_Plas" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> QR </ci>
+              <ci> FreeR </ci>
+              <apply>
+                <divide/>
+                <ci> ARest </ci>
+                <ci> Rest </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

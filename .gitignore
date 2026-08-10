@@ -1,0 +1,28 @@
+# IDE
+.vscode/*
+
+# R
+.Rproj.user
+
+# Python
+*.pyc
+**/__pycache__
+.ipynb_checkpoints
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Log files
+*.log
+
+# Cache files
+.cache/
+
+# Validation results
+validation/results/
